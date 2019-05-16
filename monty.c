@@ -73,6 +73,9 @@ char *line (char *buf)
 	char **search; /*double pointer that store every string in the line*/
 	char *delimiters = " \t\r\n\v\f", *toks;
 	int num, id, i = 1, n;
+	instruction_t func[] = {
+	{"push", s_push}, {"pall", pall}
+	}
 
 	toks = strtok(buf, delimiters);
 	search[0] = toks;
@@ -97,7 +100,10 @@ int main(int argc, char *argv[])
 	long len;
 	FILE *f;
 	int i = 1, num;
-
+	instruction_t func[] = {
+	{"push", s_push}, {"pall", pall}
+	}	
+	
 	printf("%s", argv[1]);
 	f = fopen(argv[1], "r");
 	
@@ -114,14 +120,14 @@ int main(int argc, char *argv[])
 		fgets(buf, len, f);
 		printf("%s\n", buf);
 		toks = line(buf);
-	 	printf("toks main: %s", toks);	
+	 	printf("toks main: %s\n", toks);	
 		if (!toks)
 			return (0);
 		num = atoi(toks);
 		printf("num main: %i", num);
 		/*crear nodo y linked list*/
 	}
-	printf("%s", buf);
+	printf("fin de while: %s\n", buf);
 	
 	return (0);
 	

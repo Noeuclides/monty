@@ -1,5 +1,6 @@
 #ifndef MONTY_H
 #define MONTY_H
+#define ERROR_MALLOC "Error: malloc failed\n"
 
 #include <stdio.h>
 #include <stdlib.h>
