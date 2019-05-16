@@ -7,7 +7,9 @@
 void node_push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *head;
+
 	head = malloc(sizeof(stack_t));
+
 	if (head == NULL)
 	{
 		printf(ERROR_MALLOC);
@@ -22,7 +24,6 @@ void node_push(stack_t **stack, unsigned int line_number)
 	*stack = head;
 }
 
-
 /**
  * node_pop - removes the node
  * @stack: head stack
@@ -31,6 +32,7 @@ void node_push(stack_t **stack, unsigned int line_number)
 void node_pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *head;
+
 	head = *stack;
 
 	if (stack == NULL || *stack == NULL)
@@ -46,7 +48,7 @@ void node_pop(stack_t **stack, unsigned int line_number)
 /**
  * node_pint - print value of top
  * @stack: head stack
- * @ln: line number
+ * @line_number: line number
  */
 void node_pint(stack_t **stack, unsigned int line_number)
 {
