@@ -47,6 +47,8 @@ int line (stack_t **head, char *buf, int count)
 	toks = strtok(buf, delimiters);
 	number = strtok(NULL, delimiters); 
 	s_num();
+	if (toks == NULL)
+		return (1);
 	if (number == NULL && strcmp(toks, "pall") != 0)
 		return (0);
 	for (i = 0; func[i].opcode != NULL && f == 0; i++)
@@ -84,7 +86,6 @@ int main(int argc, char *argv[])
 		return (0);
 	while (fgets(buf, len, f))
 	{
-		/*fgets(buf, len, f);*/
 		num = line(&head, buf, count);
 		if (num != 1)
 			return (0);
