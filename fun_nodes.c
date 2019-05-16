@@ -1,9 +1,9 @@
+#include "monty.h"
 /**
  * node_push - add node to de list
  * @stack: head stack
  * @line_number: number of line
  */
-
 void node_push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *head;
@@ -43,9 +43,8 @@ void node_pop(stack_t **stack, unsigned int line_number)
 		(*stack)->prev = NULL;
 	free(head);
 }
-
 /**
- * stk_pint - print value of top
+ * node_pint - print value of top
  * @stack: head stack
  * @ln: line number
  */
