@@ -6,22 +6,18 @@
  */
 void node_push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *head;
+        stack_t *new_node;
 
-	head = malloc(sizeof(stack_t));
-
-	if (head == NULL)
+	new_node = malloc(sizeof(stack_t));
+	if (new_node == NULL)
 	{
 		printf(ERROR_MALLOC);
 		exit(EXIT_FAILURE);
 	}
-
-	head->n = line_number;
-	head->next = *stack;
-	head->prev = NULL;
-	if (*stack != NULL)
-		(*stack)->prev = head;
-	*stack = head;
+	new_node->n = line_number;
+	new_node->prev = NULL;
+	new_node->next = *stack;
+	*stack = new_node;
 }
 
 /**
