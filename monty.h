@@ -47,5 +47,5 @@ void free_list(stack_t *head);
 void node_sub(stack_t **stack, unsigned int line_number);
 void node_mul(stack_t **stack, unsigned int line_number);
 void node_nop(stack_t **stack, unsigned int line_number);
-
+void add(stack_t **stack, unsigned int line_number);
 #endif

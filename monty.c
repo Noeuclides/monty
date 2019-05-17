@@ -68,7 +68,8 @@ int line(stack_t **head, char *buf, int count)
 	instruction_t func[] = {
 	{"push", node_push}, {"pall", pall}, {"pop", node_pop},
 	{"pint", node_pint}, {"swap", node_swap}, {"sub", node_sub},
-	{"mul", node_mul}, {"nop", node_nop}, {NULL, NULL}
+	{"mul", node_mul}, {"nop", node_nop}, {"add", node_add},
+	{NULL, NULL}
 	};
 
 	toks = strtok(buf, delimiters);
