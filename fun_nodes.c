@@ -14,12 +14,12 @@ void node_push(stack_t **stack, unsigned int line_number)
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: malloc failed");
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	if (number == NULL)
 	{
-		dprintf(STDERR_FILENO, "L%i: usage: push integer", line_number);
+		dprintf(STDERR_FILENO, "L%i: usage: push integer\n", line_number);
 		free_list(*stack);
 		exit(EXIT_FAILURE);
 	}
