@@ -67,7 +67,7 @@ int line(stack_t **head, char *buf, int count)
 	int i, n, f = 0;
 	instruction_t func[] = {
 	{"push", node_push}, {"pall", pall}, {"pop", node_pop},
-	{"pint", node_pint}, {"swap", node_swap}, {"sub", node_sub}
+	{"pint", node_pint}, {"swap", node_swap}, {"sub", node_sub},
 	{"mul", node_mul}, {"nop", node_nop}, {NULL, NULL}
 	};
 
