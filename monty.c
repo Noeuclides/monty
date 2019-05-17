@@ -50,7 +50,6 @@ int s_num(void)
 		}
 	}
 	return (f);
-		
 }
 
 /**
@@ -83,14 +82,13 @@ int line(stack_t **head, char *buf, int count)
 			f = 1;
 		}
 	}
-	if (f == 0)	
+	if (f == 0)
 	{
 		dprintf(STDERR_FILENO, "L%i: usage: push integer", count);
 		free(buf);
 		free_list(*head);
 		exit(EXIT_FAILURE);
 	}
-	
 	return (1);
 }
 

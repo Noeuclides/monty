@@ -17,13 +17,12 @@ void node_push(stack_t **stack, unsigned int line_number)
 		printf(ERROR_MALLOC);
 		exit(EXIT_FAILURE);
 	}
-        if (number == NULL)
-        {
-                dprintf(STDERR_FILENO, "L%i: usage: push integer", line_number);
-                free_list(*stack);
-                exit(EXIT_FAILURE);
-        }
-
+	if (number == NULL)
+	{
+		dprintf(STDERR_FILENO, "L%i: usage: push integer", line_number);
+		free_list(*stack);
+		exit(EXIT_FAILURE);
+	}
 	np = atoi(number);
 	node->n = np;
 	if (*stack == NULL)
