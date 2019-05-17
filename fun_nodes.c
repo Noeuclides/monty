@@ -83,15 +83,12 @@ void node_pop(stack_t **stack, unsigned int line_number)
  */
 void node_pint(stack_t **stack, unsigned int line_number)
 {
-	stack_t *head = stack;
-
-	if (head)
-	{
-		printf("%d\n", head->n);
-	}
+	
+	if (*stack)
+		printf("%d\n", (*stack)->n);
 	else
 	{
-		printf("L%d: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
