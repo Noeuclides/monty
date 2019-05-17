@@ -1,11 +1,10 @@
 #include "monty.h"
-
 /**
 * s_num - function that check if a string has integers with the global var.
 *
 *Return: void
 **/
-void s_num()
+void s_num(void)
 {
 	int i;
 
@@ -30,12 +29,13 @@ void s_num()
 }
 
 /**
-* line: function that tokenize every string in the line
-*
-*
-*
+* line - function that tokenize every string in the line
+* @head: pointer
+* @buf: pointer
+* @count: counter to line
+* Return: int
 */
-int line (stack_t **head, char *buf, int count)
+int line(stack_t **head, char *buf, int count)
 {
 	char *delimiters = " \t\r\n\v\f", *toks = NULL;
 	int i, n, f = 0;
@@ -73,14 +73,14 @@ int main(int argc, char *argv[])
 	stack_t *head = NULL;
 
 	if (argc != 2)
-		return(-1);
+		return (-1);
 	f = fopen(argv[1], "r");
 	if (!f)
 		return (0);
-	fseek (f, 0, SEEK_END);
-	len = ftell (f);
-	fseek (f, 0, SEEK_SET);
-	buf = malloc (len);
+	fseek(f, 0, SEEK_END);
+	len = ftell(f);
+	fseek(f, 0, SEEK_SET);
+	buf = malloc(len);
 	if (!buf)
 		return (0);
 	while (fgets(buf, len, f))
