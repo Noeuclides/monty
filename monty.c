@@ -41,11 +41,11 @@ int line (stack_t **head, char *buf, int count)
 	int i, n, f = 0;
 	instruction_t func[] = {
 	{"push", node_push}, {"pall", pall}, {"pop", node_pop},
-	{"pint", node_pint}, {NULL, NULL}
+	{"pint", node_pint}, {"swap", node_swap}, {NULL, NULL}
 	};
 
 	toks = strtok(buf, delimiters);
-	number = strtok(NULL, delimiters); 
+	number = strtok(NULL, delimiters);
 	s_num();
 	if (toks == NULL)
 		return (1);
@@ -73,7 +73,6 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 		return(-1);
-	
 	f = fopen(argv[1], "r");
 	if (!f)
 		return (0);
