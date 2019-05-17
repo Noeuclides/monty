@@ -129,7 +129,6 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: malloc failed");
 		exit(EXIT_FAILURE);
 	}
-	
 	while (fgets(buf, len, f))
 	{
 		num = line(&head, buf, count);
@@ -143,6 +142,5 @@ int main(int argc, char *argv[])
 	free_list(head);
 	free(buf);
 	fclose(f);
-
 	exit(EXIT_SUCCESS);
 }
