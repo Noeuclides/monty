@@ -7,7 +7,7 @@
 **/
 void s_num()
 {
-	int i;
+	int i, f = 1;
 
 	if (number == NULL)
 		return;
@@ -21,10 +21,13 @@ void s_num()
 	}
 	else
 	{
-		for (i = 0; number[i] != '\0'; i++)
+		for (i = 0; f == 1 && number[i] != '\0'; i++)
 		{	
 			if (number[i] < 48 || number[i] > 57)
+			{
 				number = NULL;
+				f = 0;
+			}
 		}
 	}
 }
