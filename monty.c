@@ -123,13 +123,11 @@ int main(int argc, char *argv[])
 	fseek(f, 0, SEEK_SET);
 	buf = malloc(len);
 	if (!buf)
-	{
-		dprintf(STDERR_FILENO, "Error: malloc failed");
+	{	dprintf(STDERR_FILENO, "Error: malloc failed");
 		exit(EXIT_FAILURE);
 	}
 	while (fgets(buf, len, f))
-	{
-		num = line(&head, buf, count);
+	{	num = line(&head, buf, count);
 		if (num != 1)
 		{
 			free(buf);
