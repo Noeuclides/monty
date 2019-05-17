@@ -15,15 +15,15 @@ void s_num()
 	{
 		for (i = 1; number[i] != '\0'; i++)
 		{	
-			if (number[i] <= 48 || number[i] >= 57)
+			if (number[i] < 48 || number[i] > 57)
 				number = NULL;
 		}
 	}
 	else
 	{
-		for (i = 1; number[i] != '\0'; i++)
+		for (i = 0; number[i] != '\0'; i++)
 		{	
-			if (number[i] <= 48 || number[i] >= 57)
+			if (number[i] < 48 || number[i] > 57)
 				number = NULL;
 		}
 	}
@@ -61,7 +61,6 @@ int line (stack_t **head, char *buf, int count)
 		}
 	}
 	return (1);
-
 }
 
 int main(int argc, char *argv[])
@@ -92,5 +91,4 @@ int main(int argc, char *argv[])
 		count++;
 	}
 	return (0);
-	
 }
