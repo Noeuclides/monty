@@ -26,7 +26,7 @@ int s_num(void)
 	int i, f = 1;
 
 	if (number == NULL)
-		return;
+		return (0);
 	if (number[0] == '-')
 	{
 		for (i = 1; f == 1 && number[i] != '\0'; i++)
@@ -63,7 +63,7 @@ int s_num(void)
 int line(stack_t **head, char *buf, int count)
 {
 	char *delimiters = " \t\r\n\v\f", *toks = NULL;
-	int i, n, m, f = 0;
+	int i, n, f = 0;
 	instruction_t func[] = {
 	{"push", node_push}, {"pall", pall}, {"pop", node_pop},
 	{"pint", node_pint}, {"swap", node_swap}, {NULL, NULL}
@@ -71,16 +71,9 @@ int line(stack_t **head, char *buf, int count)
 
 	toks = strtok(buf, delimiters);
 	number = strtok(NULL, delimiters);
-	m = s_num();
+	s_num();
 	if (toks == NULL)
 		return (1);
-	/*if (number == NULL)
-	{
-		printf("1L%i: usage: push integer", count);
-		free(buf);
-		free_list(*head);
-		exit(EXIT_FAILURE);
-	}*/
 	for (i = 0; func[i].opcode != NULL && f == 0; i++)
 	{
 		n = strcmp(toks, func[i].opcode);
@@ -92,7 +85,7 @@ int line(stack_t **head, char *buf, int count)
 	}
 	if (f == 0)	
 	{
-		printf("L%i: usage: push integer", count);
+		dprintf(STDERR_FILENO, "L%i: usage: push integer", count);
 		free(buf);
 		free_list(*head);
 		exit(EXIT_FAILURE);
@@ -138,5 +131,7 @@ int main(int argc, char *argv[])
 	}
 	free_list(head);
 	free(buf);
-	return (0);
+	fclose(f);
+
+	exit(EXIT_SUCCESS);
 }

@@ -8,6 +8,8 @@ char *number;
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -43,7 +45,7 @@ void node_pop(stack_t **stack, unsigned int line_number);
 void node_pint(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void node_swap(stack_t **stack, unsigned int line_number);
-
+void free_list(stack_t *head);
 
 
 
