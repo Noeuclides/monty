@@ -88,9 +88,7 @@ int line(stack_t **head, char *buf, int count)
 	if (f == 0)
 	{
 		dprintf(STDERR_FILENO, "L%i: unknown instruction %s", count, toks);
-		free(buf);
-		free_list(*head);
-		exit(EXIT_FAILURE);
+		return (0);
 	}
 	return (1);
 }
@@ -135,7 +133,9 @@ int main(int argc, char *argv[])
 		if (num != 1)
 		{
 			free(buf);
-			return (0);
+			free_list(head);
+			fclose(f);
+			exit(EXIT_FAILURE);
 		}
 		count++;
 	}
