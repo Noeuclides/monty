@@ -2,13 +2,11 @@ push 12 wjnrflwknfv
 push -32 iknn lekmvf
 push 0023
 	pall
-swap 12
+swap
 pall
 	push 2324
-	
 push 5
 push 		-232
-<<<<<<< HEAD
 pall
 push 0023
            	push -0012
