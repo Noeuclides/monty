@@ -60,22 +60,28 @@ void pall(stack_t **stack, unsigned int line_number)
  * @stack: head stack
  * @line_number: line number
  */
-void node_pop(stack_t **stack, unsigned int line_number)
+void pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *head;
-	unsigned int l = line_number;
+	stack_t *aux;
 
-	head = *stack;
-
-	if (stack == NULL || *stack == NULL)
+	if (*stack == NULL)
 	{
-		fprintf(stderr, "L<%d>: can't pop an empty stack\n", l);
+		fprintf(stderr, "L%u: can't pop an empty stack\n",
+			line_number);
 		exit(EXIT_FAILURE);
 	}
-	*stack = head->next;
-	if (*stack != NULL)
+	if ((*stack)->next)
+	{
+		aux = (*stack)->next;
+		free(*stack);
+		(*stack) = aux;
 		(*stack)->prev = NULL;
-	free(head);
+	}
+	else
+	{
+		free(*stack);
+		*stack = NULL;
+	}
 }
 /**
  * node_pint - print value of top
