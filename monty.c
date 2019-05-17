@@ -6,7 +6,7 @@
 **/
 void s_num(void)
 {
-	int i;
+	int i, f = 1;
 
 	if (number == NULL)
 		return;
@@ -20,10 +20,13 @@ void s_num(void)
 	}
 	else
 	{
-		for (i = 0; number[i] != '\0'; i++)
+		for (i = 0; f == 1 && number[i] != '\0'; i++)
 		{
 			if (number[i] < 48 || number[i] > 57)
+			{
 				number = NULL;
+				f = 0;
+			}
 		}
 	}
 }
@@ -50,7 +53,10 @@ int line(stack_t **head, char *buf, int count)
 	if (toks == NULL)
 		return (1);
 	if (number == NULL && strcmp(toks, "pall") != 0)
-		return (0);
+	{
+		printf("L%i: usage: push integer", count);
+		exit(EXIT_FAILURE);
+	}
 	for (i = 0; func[i].opcode != NULL && f == 0; i++)
 	{
 		n = strcmp(toks, func[i].opcode);
@@ -58,6 +64,11 @@ int line(stack_t **head, char *buf, int count)
 		{
 			func[i].f(head, count);
 			f = 1;
+		}
+		else
+		{
+			printf("L%i: usage: push integer", count);
+			exit(EXIT_FAILURE);
 		}
 	}
 	return (1);
@@ -87,7 +98,7 @@ int main(int argc, char *argv[])
 	fseek(f, 0, SEEK_SET);
 	buf = malloc(len);
 	if (!buf)
-		return (0);
+	return (0);
 	while (fgets(buf, len, f))
 	{
 		num = line(&head, buf, count);
