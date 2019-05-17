@@ -87,7 +87,7 @@ int line(stack_t **head, char *buf, int count)
 	}
 	if (f == 0)
 	{
-		dprintf(STDERR_FILENO, "L%i: unknown instruction %s", count, toks);
+		dprintf(STDERR_FILENO, "L%i: unknown instruction %s\n", count, toks);
 		return (0);
 	}
 	return (1);
@@ -109,13 +109,13 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		dprintf(STDERR_FILENO, "USAGE: monty file");
+		dprintf(STDERR_FILENO, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	f = fopen(argv[1], "r");
 	if (!f)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't open file %s", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	fseek(f, 0, SEEK_END);
@@ -123,7 +123,7 @@ int main(int argc, char *argv[])
 	fseek(f, 0, SEEK_SET);
 	buf = malloc(len);
 	if (!buf)
-	{	dprintf(STDERR_FILENO, "Error: malloc failed");
+	{	dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	while (fgets(buf, len, f))
