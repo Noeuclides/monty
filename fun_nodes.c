@@ -15,7 +15,6 @@ void node_push(stack_t **stack, unsigned int line_number)
 
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
-
 	{
 		printf(ERROR_MALLOC);
 		exit(EXIT_FAILURE);
@@ -45,7 +44,7 @@ void node_push(stack_t **stack, unsigned int line_number)
  */
 void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *aux;
+	stack_t *aux = NULL;
 
 	(void)line_number;
 

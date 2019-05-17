@@ -1,14 +1,9 @@
-push -1
-push 123a
-push push
-push
-push 0000
-push 3 
+push 0
+push 3
+push -1024
 
 
-
-push 5
-push 123456789
-push 3 
-
+	push 30 
+pall
+		push 12d
 
