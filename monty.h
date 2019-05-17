@@ -3,8 +3,6 @@
 
 char *number;
 
-#define ERROR_MALLOC "Error: malloc failed\n"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
