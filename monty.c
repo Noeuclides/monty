@@ -1,66 +1,33 @@
 #include "monty.h"
 
 /**
-* s_num - function that check if a string has integers
+* s_num - function that check if a string has integers with the global var.
 *
-*@p: string to compare with integers 
-*
-*Return: 0 if the string is not an integer, 1 otherwise
+*Return: void
 **/
-int s_num(char *p)
+void s_num()
 {
-	int i, f = 1;
-	
-	
-	if (p[0] == '-')
+	int i;
+
+	if (number == NULL)
+		return;
+	if (number[0] == '-')
 	{
-		for (i = 1; p[i] != '\0'; i++)
+		for (i = 1; number[i] != '\0'; i++)
 		{	
-			if (p[i] <= 48 || p[i] >= 57)
-				return (0);
+			if (number[i] <= 48 || number[i] >= 57)
+				number = NULL;
 		}
 	}
 	else
 	{
-		for (i = 1; p[i] != '\0'; i++)
+		for (i = 1; number[i] != '\0'; i++)
 		{	
-			if (p[i] <= 48 || p[i] >= 57)
-				return (0);
+			if (number[i] <= 48 || number[i] >= 57)
+				number = NULL;
 		}
 	}
-	return (1);
 }
-
-/**
-* s_push - function that look for a specific word in a string
-*
-*@p: string to compare with the specific word 
-*
-*Return: 0 if the string is not the string looked, 1 otherwise
-**/
-int s_push(char *p)
-{
-	char *push = "push";
-	char *pall = "pall";
-	int i, n = 1;
-
-	if (strlen(p) != strlen(push))
-		return (0);
-	for (i = 0; p[i] != '\0'; i++)
-	{
-		if (p[i] != push[i] && p[i] != pall[i])
-			printf("no es igual: %s\n", p);
-		else if (p[i] == pall[i])
-			n = 2;
-		else
-			n = 1;
-	}
-	printf("s_push function: %i\n", n); 
-	if (n == 2)
-		return (2);
-	return (1);
-}
-
 
 /**
 * line: function that tokenize every string in the line
@@ -68,45 +35,47 @@ int s_push(char *p)
 *
 *
 */
-char *line (char *buf)
+int line (stack_t **head, char *buf, int count)
 {
-	char **search; /*double pointer that store every string in the line*/
-	char *delimiters = " \t\r\n\v\f", *toks;
-	int num, id, i = 1, n;
+	char *delimiters = " \t\r\n\v\f", *toks = NULL;
+	int i, n, f = 0;
 	instruction_t func[] = {
-	{"push", s_push}, {"pall", pall}
-	}
+	{"push", node_push}, {"pall", pall}, {"pop", node_pop},
+	{"pint", node_pint}, {NULL, NULL}
+	};
 
 	toks = strtok(buf, delimiters);
-	search[0] = toks;
-	id = s_push(search[0]);
-	printf(" id en line: %i\n", id);
-	if (id == 1)/*means that the word is push, and the next string most be a number*/
+	number = strtok(NULL, delimiters); 
+	s_num();
+	if (toks == NULL)
+		return (1);
+	if (number == NULL && strcmp(toks, "pall") != 0)
+		return (0);
+	for (i = 0; func[i].opcode != NULL && f == 0; i++)
 	{
-		toks = strtok(NULL, delimiters);	
-		search[0] = toks;
-		n = s_num(search[0]);
-		printf("toks en line: %s\n", toks);
-		if (n == 1)/*means that the string is an integer*/
-			return (search[0]);			
+		n = strcmp(toks, func[i].opcode);
+		if (n == 0)
+		{
+			func[i].f(head, count);
+			f = 1;
+		}
 	}
-	return (NULL);
+	return (1);
 
 }
 
 int main(int argc, char *argv[])
 {
-	char *buf, *toks;
+	char *buf;
 	long len;
 	FILE *f;
-	int i = 1, num;
-	instruction_t func[] = {
-	{"push", s_push}, {"pall", pall}
-	}	
+	int num, count = 1;
+	stack_t *head = NULL;
+
+	if (argc != 2)
+		return(-1);
 	
-	printf("%s", argv[1]);
 	f = fopen(argv[1], "r");
-	
 	if (!f)
 		return (0);
 	fseek (f, 0, SEEK_END);
@@ -115,20 +84,13 @@ int main(int argc, char *argv[])
 	buf = malloc (len);
 	if (!buf)
 		return (0);
-	while (!feof (f))
+	while (fgets(buf, len, f))
 	{
-		fgets(buf, len, f);
-		printf("%s\n", buf);
-		toks = line(buf);
-	 	printf("toks main: %s\n", toks);	
-		if (!toks)
+		num = line(&head, buf, count);
+		if (num != 1)
 			return (0);
-		num = atoi(toks);
-		printf("num main: %i", num);
-		/*crear nodo y linked list*/
+		count++;
 	}
-	printf("fin de while: %s\n", buf);
-	
 	return (0);
 	
 }

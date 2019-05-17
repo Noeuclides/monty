@@ -1,4 +1,5 @@
 #include "monty.h"
+
 /**
  * node_push - add node to de list
  * @stack: head stack
@@ -6,18 +7,52 @@
  */
 void node_push(stack_t **stack, unsigned int line_number)
 {
-        stack_t *new_node;
 
-	new_node = malloc(sizeof(stack_t));
-	if (new_node == NULL)
+	stack_t *node;
+	int np;
+
+	(void)line_number;
+
+	node = malloc(sizeof(stack_t));
+	if (node == NULL)
+
 	{
 		printf(ERROR_MALLOC);
 		exit(EXIT_FAILURE);
 	}
-	new_node->n = line_number;
-	new_node->prev = NULL;
-	new_node->next = *stack;
-	*stack = new_node;
+
+
+	np = atoi(number);
+	node->n = np;
+	if (*stack == NULL)
+	{
+		node->next = NULL;
+		node->prev = NULL;
+		*stack = node;
+	}
+	else
+	{
+		node->next = *stack;
+		node->prev = NULL;
+		(*stack)->prev = node;
+		*stack = node;
+	}
+}
+
+/**
+ * pall - print stack
+ * @stack: head stack
+ * @line_number: number of line
+ */
+void pall(stack_t **stack, unsigned int line_number)
+{
+	stack_t *aux;
+
+	(void)line_number;
+
+	for (aux = *stack; aux != NULL; aux = aux->next)
+		printf("%i\n", aux->n);
+
 }
 
 /**
@@ -59,6 +94,7 @@ void node_pint(stack_t **stack, unsigned int line_number)
 
 	printf("%d\n", head->n);
 }
+
 
 /**
  * node_swap - swaps  two elements.
