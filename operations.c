@@ -26,24 +26,22 @@ void node_sub(stack_t **stack, unsigned int line_number)
  */
 void node_mul(stack_t **stack, unsigned int line_number)
 {
-	int mul, cont = 0;
+	stack_t *aux;
+        int a, len = 0;
 
-	while (*stack != null)
-	{
-		cont++;
-		stack = stack->next;
+        for (aux = *stack; aux; aux = aux->next)
+                len++;
+        if (len < 2)
+        {
+                fprintf(stderr, "L%u: can't mul, stack too short\n",
+                        line_number);
+                exit(EXIT_FAILURE);
 	}
- 
-	if (count(head) < 2)
-	{
-		printf("L%u: can't mul, stack too short", line_number);
-		exit(EXIT_FAILURE);
-	}
-
-	mul = ((*stack)->next)->n * (*stack)->n;
+	a = (*stack)->n;
 	node_pop(stack, line_number);
-	(*stack)->n = mul;
+	(*stack)->n *= a;
 }
+
 /**
  * node_nop - function that does nothing
  * @stack: head stack
