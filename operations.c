@@ -6,18 +6,20 @@
  */
 void node_sub(stack_t **stack, unsigned int line_number)
 {
-	int sub;
+	stack_t *aux;
+	int sub, len = 0;
 
-	if (*stack == NULL || (*stack)->next == NULL)
+	for (aux = *stack; aux; aux = aux->next)
+		len++;
+	if (len < 2)
 	{
-		printf("L%u: can't add, stack too short\n", line_number);
+		fprintf(stderr, "L%u: can't sub, stack too short\n",
+			line_number);
 		exit(EXIT_FAILURE);
 	}
-
-	sub = ((*stack)->next)->n - (*stack)->n;
-
+	sub = (*stack)->n;
 	node_pop(stack, line_number);
-	(*stack)->n = sub;
+	(*stack)->n -= sub;
 }
 /**
  *node_mul - multiplies the top two elements in the stack
