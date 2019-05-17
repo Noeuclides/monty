@@ -105,7 +105,7 @@ void node_pint(stack_t **stack, unsigned int line_number)
 void node_swap(stack_t **stack, unsigned int line_number)
 {
 	int aux = 0;
-	unsigned int line_number = l;
+	unsigned int l = line_number;
 
 	if ((stack == NULL) || (*stack == NULL) || ((*stack)->next) == NULL)
 	{
@@ -115,23 +115,4 @@ void node_swap(stack_t **stack, unsigned int line_number)
 	aux = (*stack)->next->n;
 	(*stack)->next->n = (*stack)->n;
 	(*stack)->n = aux;
-}
-
-/**
- * p_stack - Print all items of the stack
- * @stack: head stack
- * @line_number: line number of the file
- */
-void p_stack(stack_t **stack, unsigned int line_number)
-{
-	stack_t *aux;
-
-	if (*stack == NULL || stack == NULL)
-		exit(EXIT_FAILURE);
-	aux = *head;
-	while (aux != NULL)
-	{
-		printf("%d\n", aux->n);
-		aux = aux->next;
-	}
 }

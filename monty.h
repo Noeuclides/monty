@@ -43,6 +43,7 @@ void node_push(stack_t **stack, unsigned int line_number);
 void node_pop(stack_t **stack, unsigned int line_number);
 void node_pint(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
+void node_swap(stack_t **stack, unsigned int line_number);
 
 
 
