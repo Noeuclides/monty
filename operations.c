@@ -80,6 +80,6 @@ void node_add(stack_t **stack, unsigned int line_number)
 		tmp = (*stack)->next;
 		sum = (*stack)->n + tmp->n;
 		tmp->n = sum;
-		pop(stack, line_number);
+		node_pop(stack, line_number);
 	}
 }
