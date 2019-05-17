@@ -87,7 +87,7 @@ int line(stack_t **head, char *buf, int count)
 	}
 	if (f == 0)
 	{
-		dprintf(STDERR_FILENO, "L%i: usage: push integer", count);
+		dprintf(STDERR_FILENO, "L%i: unknown instruction %s", count, toks);
 		free(buf);
 		free_list(*head);
 		exit(EXIT_FAILURE);
@@ -110,16 +110,26 @@ int main(int argc, char *argv[])
 	stack_t *head = NULL;
 
 	if (argc != 2)
-		return (-1);
+	{
+		dprintf(STDERR_FILENO, "USAGE: monty file");
+		exit(EXIT_FAILURE);
+	}
 	f = fopen(argv[1], "r");
 	if (!f)
-		return (0);
+	{
+		dprintf(STDERR_FILENO, "Error: Can't open file %s", argv[1]);
+		exit(EXIT_FAILURE);
+	}
 	fseek(f, 0, SEEK_END);
 	len = ftell(f);
 	fseek(f, 0, SEEK_SET);
 	buf = malloc(len);
 	if (!buf)
-		return (0);
+	{
+		dprintf(STDERR_FILENO, "Error: malloc failed");
+		exit(EXIT_FAILURE);
+	}
+	
 	while (fgets(buf, len, f))
 	{
 		num = line(&head, buf, count);
